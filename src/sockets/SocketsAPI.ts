@@ -21,7 +21,7 @@ const { setCoffeeCard, setQuestionCard, setScramMasterRole, setSequenceType, set
   settingsSection;
 const { setMinutes, setSeconds, setStartTime } = timerActions;
 
-export const socket = io('http://localhost:7001');
+export const socket = io('wss://pointing-poker-server-v1.herokuapp.com');
 
 export const connectToSocket = (roomId: string, user: IUserInfo) => {
   socket.emit('join-game', roomId, user);

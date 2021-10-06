@@ -7,7 +7,7 @@ import { IUserInfo } from '../types/interfaces';
 
 const { setCurrUserID, setGameId, setUser } = initial;
 
-const URL = 'http://localhost:7001/api';
+const URL = 'https://pointing-poker-server-v1.herokuapp.com/api';
 
 export const receiveAllMsgs =
   (gameId: string): ThunkAction<void, IChatState, unknown, IActionSetAllMsgs> =>
