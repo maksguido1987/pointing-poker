@@ -1,7 +1,0 @@
-{
-    "verbose":false,
-    "ignore":["node_modules"],
-    "watch":["src"],
-    "exec":"npx node ./src/index.js",
-    "ext":"js"
-}
