@@ -40,9 +40,9 @@ const ConnectForm = () => {
         reader.readAsDataURL(file);
         reader.onload = () => {
           resolve(reader.result);
-          const imageElement = new Image();
-          imageElement.src = URL.createObjectURL(file);
-          dispatch(setAvatar(imageElement.src));
+          // const imageElement = new Image();
+          // imageElement.src = URL.createObjectURL(file);
+          dispatch(setAvatar(reader.result as string));
         };
         reader.onerror = (error) => {
           reject(error);
