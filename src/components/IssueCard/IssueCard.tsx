@@ -87,7 +87,9 @@ const IssueCard: FC<IIssueCard> = ({
           </form>
         ) : (
           <>
-            <span className="issue-card-name">{issueTitle}</span>
+            <span data-testid="span" className="issue-card-name">
+              {issueTitle}
+            </span>
             <span className="issue-card-prior">{issuePriority} priority</span>
             {isCompleted && <div className="selected-card-skin" />}
           </>

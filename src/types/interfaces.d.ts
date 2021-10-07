@@ -12,6 +12,12 @@ export interface IPlayerDecisionProps {
   decision: string;
 }
 
+export interface IChatMessageProps {
+  users: IUsers;
+  currUserID: string;
+  msgData: IMsg;
+}
+
 export interface IStatisticsSectionProps {
   isStats: boolean;
 }

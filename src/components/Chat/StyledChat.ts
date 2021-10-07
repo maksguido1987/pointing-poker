@@ -49,6 +49,9 @@ export const StyledChatBox = styled.div<Iprops>`
       }
     }
   }
+  @media (max-width: 650px) {
+    transform: scale(0.7);
+  }
 `;
 
 export const StyledChatWindow = styled.div`
@@ -62,11 +65,11 @@ export const StyledChatWindow = styled.div`
   border: 1px solid #c5d0db;
 
   &::-webkit-scrollbar {
-    width: 3px;
+    width: 10px;
   }
 
   &::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background-color: #f8f8ff;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -78,7 +81,7 @@ export const StyledChatWindow = styled.div`
   }
 
   .msg-txt {
-    border-radius: 1.15rem;
+    border-radius: 5px;
     line-height: 1.25;
     max-width: 300px;
     padding: 0.5rem 0.875rem;

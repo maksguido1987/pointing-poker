@@ -46,7 +46,7 @@ const GameCard: FC<IGameCardProps> = ({
         !scramMasterAsPlayer &&
         playersCheckedCard === allUsersLength - 1 - observersCount)
     ) {
-      setTimeout(() => setFlippedClass(true), 1000);
+      setFlippedClass(true);
     } else {
       setFlippedClass(false);
     }

@@ -46,7 +46,7 @@ const GamePage = () => {
   const isRound = useSelector((store: RootState) => store.gameProcess.startRound);
   const { timerNeeded, scramMasterAsPlayer } = useSelector((store: RootState) => store.settings);
   const cardsArr = useSelector((store: RootState) => [...store.card.store]);
-  const timeStore = useSelector((store: RootState) => store.timer);
+  const startTime = useSelector((store: RootState) => store.timer.startTime);
   const { isPlayer, isDialer, isObserver } = useSelector((store: RootState) => store.personStatus);
   const { issueCards, elemIndex } = useSelector((state: RootState) => state.issueFormData);
   const history = useHistory();
@@ -73,8 +73,8 @@ const GamePage = () => {
 
   const setStartedTime = () =>
     setTimeout(() => {
-      dispatch(setMinutes(timeStore.startTime[0]));
-      dispatch(setSeconds(timeStore.startTime[1]));
+      dispatch(setMinutes(startTime[0]));
+      dispatch(setSeconds(startTime[1]));
       issueCards.forEach((el: IIssueCard) => {
         if (el.current && el.isCompleted) {
           dispatch(issueForm.setCompletedIssueCard({ id: el.issueID, count: false }));

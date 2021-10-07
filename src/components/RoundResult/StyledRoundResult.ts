@@ -80,6 +80,6 @@ export const StyledRoundResult = styled.div`
   @media (max-width: 650px) {
     transform: scale(0.8);
     top: 5%;
-    left: 10%;
+    left: auto;
   }
 `;

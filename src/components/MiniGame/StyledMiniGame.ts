@@ -169,6 +169,9 @@ export const StyledMiniGame = styled.div<IStyledMiniGameProps>`
     font-weight: bold;
     transform: translateX(-50%);
   }
+  @media (max-width: 650px) {
+    transform: scale(0.7);
+  }
 `;
 
 export const show = keyframes`  

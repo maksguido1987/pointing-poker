@@ -1,5 +1,5 @@
 import { Link, useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import Button from '../Button/Button';
 import { StyledScramMasterSection } from './StyledScramMasterSection';
@@ -13,6 +13,7 @@ import {
   sendSettingsToAll,
   sendTimerToAll,
 } from '../../sockets/SocketsAPI';
+import { timerActions } from '../../redux/TimerRedux/TimerActions';
 
 const ScramMasterSection = () => {
   const { gameId, currUserID } = useSelector((store: RootState) => store.initial);
@@ -20,9 +21,11 @@ const ScramMasterSection = () => {
   const { scramMasterAsPlayer, timerNeeded, coffeeCardNeeded, questionCardNeeded, sequenceType } =
     useSelector((store: RootState) => store.settings);
   const history = useHistory();
+  const dispatch = useDispatch();
   const { minutes, seconds } = useSelector((store: RootState) => store.timer);
 
   const startGame = () => {
+    if (isDialer) dispatch(timerActions.setStartTime([minutes, seconds]));
     sendTimerToAll({ minutes, seconds }, gameId);
     sendSettingsToAll(
       {

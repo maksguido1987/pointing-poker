@@ -5,6 +5,7 @@ import { StyleButton } from './StyledButton';
 const Button: FC<IButtonProps> = ({ colorBG, text, color, mainPage, borderRadius, onClick }) => {
   return (
     <StyleButton
+      data-testid="button-id"
       onClick={onClick}
       color={color}
       colorBG={colorBG}

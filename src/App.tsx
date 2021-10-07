@@ -20,6 +20,7 @@ import {
   receivedRelocateResultPage,
   receivedSettings,
   receivedTimer,
+  receiveMsg,
   receiveTitle,
 } from './sockets/SocketsAPI';
 import MiniGame from './components/MiniGame/MiniGame';
@@ -48,6 +49,7 @@ const App = () => {
     receivedCancelGame(history);
     receiveTitle(dispatch);
     getInitialDataBySocket(dispatch);
+    receiveMsg(dispatch);
   }, []);
 
   return (

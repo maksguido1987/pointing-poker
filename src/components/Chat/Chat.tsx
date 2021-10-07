@@ -1,13 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useLocation } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyledChatBox, StyledChatWindow } from './StyledChat';
 import { IMsg } from '../../types/interfaces';
-import { receiveAllMsgs } from '../../API/RestAPI';
 import { chat } from '../../redux/ChatRedux/ChatActions';
 import ChatMessage from '../ChatMessage/ChatMessage';
 import ChatInput from '../ChatInput/ChatInput';
-import { receiveMsg, sendMsgToAll } from '../../sockets/SocketsAPI';
+import { sendMsgToAll } from '../../sockets/SocketsAPI';
 import { RootState } from '../../redux';
 import { mouseDown, mouseMove, mouseUp } from './helper';
 
@@ -35,25 +34,18 @@ const Chat = () => {
 
   const submitMsg = () => {
     const sendTime = new Date();
-    const decimaLen = 2;
+    const decimalLen = 2;
     sendMsgToServer({
       game_id: `${gameId}`,
       user_id: currUserID,
       text: msg,
       time: `${sendTime.getHours()}:${
-        sendTime.getMinutes().toString().length < decimaLen
+        sendTime.getMinutes().toString().length < decimalLen
           ? `0${sendTime.getMinutes()}`
           : sendTime.getMinutes()
       }`,
     });
   };
-
-  useEffect(() => {
-    if (currUserID.length) {
-      dispatch(receiveAllMsgs(gameId));
-      dispatch(receiveMsg());
-    }
-  }, []);
 
   const closeChat = () => dispatch(chat.setOpenChat(false));
 

@@ -36,9 +36,10 @@ export const StyledGamePage = styled.div`
       justify-content: space-between;
       align-items: center;
       margin-top: 120px;
+      margin-left: 10px;
     }
 
-    @media (max-width: 650px) {
+    @media (max-width: 670px) {
       margin-left: -70px;
       margin-top: -130px;
       transform: scale(0.7);

@@ -1,13 +1,7 @@
-import { IMsg, IUsers } from '../../types/interfaces';
+import { IChatMessageProps } from '../../types/interfaces';
 import { vME, vOTHERS } from '../../types/globalVariables';
 import { StyledMsg } from './StyledChatMsg';
 import { ImageContainer } from '../Avatar/StyledAvatar';
-
-interface IChatMessageProps {
-  users: IUsers;
-  currUserID: string;
-  msgData: IMsg;
-}
 
 const ChatMessage = ({
   msgData: { _id, user_id, text, time },
