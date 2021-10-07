@@ -78,4 +78,8 @@ export const StyledMsg = styled.div`
     transform: translate(-30px, -2px);
     width: 10px;
   }
+
+  .avatar-chat {
+    object-fit: cover;
+  }
 `;
