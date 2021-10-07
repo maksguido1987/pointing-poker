@@ -13,9 +13,10 @@ import { RootState } from '../../redux/index';
 import { ImageContainer } from '../Avatar/StyledAvatar';
 import { blueColor, whiteColor } from '../GlobalStyle/StyledGlobal';
 import { actions } from '../../redux/RolesRedux/RolesActions';
-import { setAvatar, setRolePlayers, showForms } from '../../redux/FormRedux/FormActions';
+import { setRolePlayers, showForms } from '../../redux/FormRedux/FormActions';
 import { StyledInput, StyledLabel } from './StyledFormComponents';
 import { createNewGame, createNewUser } from '../../API/RestAPI';
+import { addAvatar } from './helper';
 
 const ConnectForm = () => {
   const {
@@ -31,26 +32,6 @@ const ConnectForm = () => {
   const { avatar } = useSelector((state: RootState) => state.connectAvatar);
   const gameId = useSelector((state: RootState) => state.initial.gameId);
   const history = useHistory();
-
-  const addAvatar = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const src = await new Promise((resolve, reject) => {
-      const file: Blob = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-          resolve(reader.result);
-          // const imageElement = new Image();
-          // imageElement.src = URL.createObjectURL(file);
-          dispatch(setAvatar(reader.result as string));
-        };
-        reader.onerror = (error) => {
-          reject(error);
-        };
-      }
-    });
-    return src;
-  };
 
   const insertNewUser = (
     data: IConnectForm,
@@ -130,22 +111,31 @@ const ConnectForm = () => {
         <div className="connect-form-wrapper">
           <StyledLabel>
             Your first name:
-            <StyledInput {...register('firstName', { required: true, maxLength: 10 })} />
+            <StyledInput
+              data-testid="name-input"
+              {...register('firstName', { required: true, maxLength: 10 })}
+            />
             {errors.firstName && <p className="error">First name is required</p>}
           </StyledLabel>
           <StyledLabel>
             Your last name:
-            <StyledInput {...register('lastName', { required: true, maxLength: 10 })} />
+            <StyledInput
+              data-testid="last-name-input"
+              {...register('lastName', { required: true, maxLength: 10 })}
+            />
             {errors.firstName && <p className="error">Last name is required</p>}
           </StyledLabel>
           <StyledLabel>
             Your job position:
-            <StyledInput {...register('job')} />
+            <StyledInput data-testid="job-input" {...register('job')} />
           </StyledLabel>
           {isDialer && (
             <StyledLabel>
               Session name:
-              <StyledInput {...register('session', { required: true, maxLength: 20 })} />
+              <StyledInput
+                data-testid="session-input"
+                {...register('session', { required: true, maxLength: 20 })}
+              />
               {errors.session && <p className="error">Session name is required</p>}
             </StyledLabel>
           )}
@@ -156,11 +146,17 @@ const ConnectForm = () => {
                 type="file"
                 className="upload-input"
                 accept=".jpg, .jpeg, .png"
-                onChange={addAvatar}
+                onChange={(e) => addAvatar(e, dispatch)}
               />
             </label>
           </div>
-          <ImageContainer mainPage background={`url(${avatar})`} width="83px" height="83px" />
+          <ImageContainer
+            data-testid="img-container"
+            mainPage
+            background={`url(${avatar})`}
+            width="83px"
+            height="83px"
+          />
         </div>
         <div className="connect-buttons-container">
           <Button
